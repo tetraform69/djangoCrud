@@ -1,0 +1,57 @@
+{% extends "index.html" %}
+
+{% block header %}
+{% include "header.html"%}
+{% endblock %}
+
+{% block section %}
+<div>
+  <form action="/addProducto/" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div>
+      <h3 class="">Agregar Producto</h3>
+    </div>
+    <div class="form-floating m-1">
+      <input type="number" class="form-control" name="codigo" id="codigo" value="{{producto.codigoPro}}">
+      <label for="codigo">Codigo</label>
+    </div>
+    <div class="form-floating m-1">
+      <input type="text" class="form-control" name="nombre" id="nombre" value="{{producto.nombrePro}}">
+      <label for="nombre">Nombre</label>
+    </div>
+    <div class="form-floating m-1">
+      <input type="number" class="form-control" name="precio" id="precio" value="{{producto.precioPro}}">
+      <label for="precio">Precio</label>
+    </div>
+    <div class="form-floating m-1">
+      <select class="form-select form-select" name="categoria" id="categoria">
+        <option value="">Seleccione</option>
+        {% for c in categorias %}
+        <option value="{{c.id}}">{{c.nombreCat}}</option>
+        {% endfor %}
+      </select>
+      <label for="categoria" class="form-label">Categoria</label>
+    </div>
+    <div class="mb-3">
+      <label for="" class="form-label">Foto:</label>
+      <input type="file" class="form-control" name="foto" id="foto">
+    </div>
+    <div class="m-1">
+      <button type="submit" class="btn btn-success">Agregar</button>
+    </div>
+  </form>
+  {% if mensaje %}
+  <script>
+    Swal.fire({
+      icon: 'info',
+      title: 'Agregar Producto',
+      text: '{{mensaje}}'
+    })
+  </script>
+  {% endif %}
+</div>
+{% endblock %}
+
+{% block footer %}
+{% include "footer.html"%}
+{% endblock %}

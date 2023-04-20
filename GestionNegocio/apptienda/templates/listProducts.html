@@ -1,0 +1,47 @@
+{% extends "index.html" %}
+
+{% block header %}
+{% include "header.html"%}
+{% endblock %}
+
+{% block section %}
+<div>
+    <div>
+        <table class="table table-dark table-hover">
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Categoria</th>
+                    <th>Imagen</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for p in productos %}
+                <tr>
+                    <td>{{p.codigoPro}}</td>
+                    <td>{{p.nombrePro}}</td>
+                    <td>{{p.precioPro}}</td>
+                    <td>{{p.categoriaPro.nombreCat}}</td>
+                    <td><img src="../media/{{p.fotoPro}}" alt="" style="width: 100px; height: 100px; object-fit: contain;"></td>
+                    <td>
+                        <a href="/getProducto/{{p.id}}">
+                            <i class="fa fa-edit text-warning"></i>
+                        </a>
+                        <a onclick="modal('{{p.id}}')" role="button">
+                            <i class="fa fa-trash text-dangerous"></i>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% include "footer.html"%}
+{% endblock %}

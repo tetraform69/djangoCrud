@@ -1,0 +1,35 @@
+{% extends "index.html" %}
+
+{% block header %}
+{% include "header.html"%}
+{% endblock %}
+
+{% block section %}
+<div>
+  <form action="/addCategoria/" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div>
+      <h3 class="">Agregar Categoria</h3>
+    </div>
+    <div class="form-floating m-1">
+      <input type="text" class="form-control" name="nombre" id="nombre" value="{{categoria.nombreCat}}">
+      <label for="nombre">Nombre</label>
+    <div class="m-1">
+      <button type="submit" class="btn btn-success">Agregar</button>
+    </div>
+  </form>
+  {% if mensaje %}
+  <script>
+    Swal.fire({
+      icon: 'info',
+      title: 'Agregar Categoria',
+      text: '{{mensaje}}'
+    })
+  </script>
+  {% endif %}
+</div>
+{% endblock %}
+
+{% block footer %}
+{% include "footer.html"%}
+{% endblock %}

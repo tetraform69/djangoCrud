@@ -1,0 +1,47 @@
+{% load  static %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-win8.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<div class="container" style='width:40%;margin:auto;'>
+    <center><img src="{% static '../static/img/img.png'%}" class="w3-panel w3-round-xxlarge" style="border:true;width:100%;border-color:black;height:150px;-webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);border: 1px solid #000000;"></center>
+
+{%if N == '0' %}
+<div align=left class="w3-padding w3-xlarge w3-text-orange">
+    <a class="btn btn-outline-primary w3-round-large small" href="/coor/1/0"> NUEVO</a></div>
+    <div style="border:solid;border-color:#AEB6BF;height:300px;overflow:auto;">
+      <table class='table table-bordered table-striped'>
+<th width=40%>NOMBRE</th><th width=10%>Borrar</th></tr>
+{% for x in lista%}
+<tr><td><a href='/coor/2/{{x.id}}'>{{x.nom}}
+</a></td><td><a class="btn btn-outline-danger w3-rounded-xxlarge" href='/coor/3/{{x.id}}'>ELIMINAR</a><tr>
+{% endfor %}
+{%endif%}
+{%if N == '1' %}
+<div align=left class="w3-padding w3-xlarge ">
+    <h3 class="w3-center w3-win8-cobalt"><strong >NUEVA COORDINACION</strong></h3>
+    <a class="btn btn-outline-primary w3-round-large small" href="/coor/1/0"> NUEVO</a></div>
+    <div style="height:200px;">
+        <form name="mio" method=get action="/coor/11/0" class="row g-2 was-validated small" validate>
+
+            <b>Nombre</b>
+            <input style='width:100%;' type="text"  name="nombre" value="" required>
+            <button style='width:90%' class="w3-btn w3-blue w3-large w3-round-xxlarge col-3" type="submit"><i class='fa fa-save'></i> Guardar nueva coordinacion..</button>
+        </form>
+{%endif%}
+{%if N == '2' %}
+<div align=left class="w3-padding w3-xlarge ">
+    <h3 class="w3-center w3-win8-cobalt"><strong >EDITANDO COORDINACION</strong></h3>
+    <a class="btn btn-outline-primary w3-round-large small" href="/coor/1/0"> NUEVO</a></div>
+    <div style="height:200px;">
+        <form name="mio" method=get action="/coor/21/{{lista.id}}" class="row g-2 was-validated small" validate>
+
+            <b>Nombre</b>
+            <input style='width:100%;' type="text"  name="nombre" value="{{lista.nom}}" required>
+            <button style='width:90%' class="w3-btn w3-blue w3-large w3-round-xxlarge col-3" type="submit"><i class='fa fa-save'></i> Guardar nueva coordinacion..</button>
+        </form>
+{%endif%}
+{%if N == '3' %}
+Nivel 3
+{%endif%}

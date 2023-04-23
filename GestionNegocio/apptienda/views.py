@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.db import Error
 from apptienda.models import Categoria
 from apptienda.models import Producto
+from GestionNegocio.settings import MEDIA_ROOT
+from os import remove
 
 
 # Create your views here.
@@ -143,6 +145,8 @@ def updateProducto(request):
 def deleteProducto(request, id):
     try:
         producto = Producto.objects.get(id=id)
+        path = f"{MEDIA_ROOT}/{producto.fotoPro}"
+        remove(path)
         producto.delete()
         mensaje = "Producto Eliminado"
 
@@ -150,5 +154,5 @@ def deleteProducto(request, id):
         mensaje = f"Error: {err}"
 
     json = {"mensaje": mensaje}
-    
+
     return redirect("/listarProductos/", json)
